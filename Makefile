@@ -14,9 +14,9 @@ CFLAGS	= -Wall -Wextra -Werror -I .
 
 RM		= rm -f
 
-.PHONY: all clean fclean re fractol
+.PHONY: all clean fclean re fractol lib mlx
 
-all: $(NAME)
+all: lib mlx $(NAME)
 
 $(NAME): $(SRCS) $(HEADER) $(LIB) $(MLX)
 	$(CC) $(CFLAGS) $(SRCS) $(LIB) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
@@ -28,7 +28,8 @@ mlx:
 	@make -C mlx
 
 clean:
-	make clean -C libft
+	@make clean -C libft
+	@make clean -C mlx
 	$(RM) $(NAME)
 
 fclean: clean
