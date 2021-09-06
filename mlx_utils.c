@@ -14,10 +14,15 @@
 
 int	set_fractol(int argc, char **argv, t_data *data)
 {
-	if (!ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1])))
+	if (!ft_strncmp(argv[1], "Mandelbrot", ft_strlen("Mandelbrot\0")))
 		data->set_func = is_in_mandelbrot;
-	else if (!ft_strncmp(argv[1], "Julia", ft_strlen(argv[1])))
+	else if (!ft_strncmp(argv[1], "Julia", ft_strlen("Julia\0")))
 		data->set_func = is_in_julia;
+	else if (!ft_strncmp(argv[1], "Burning Ship", ft_strlen("Burning Ship\0")))
+		data->set_func = is_in_burn_ship;
+	else if (!ft_strncmp(argv[1], "Burning", ft_strlen("Burning\0")) &&
+			!ft_strncmp(argv[2], "Ship", ft_strlen("Ship\0")))
+		data->set_func = is_in_burn_ship;
 	else
 	{
 		printf("Fractal name is incorrect.\n");

@@ -45,6 +45,7 @@ void			draw(int (*is_in_set)(), t_data *data);
 int				mouse_hooks(int key_code, int x, int y, t_data *data);
 int				is_in_mandelbrot(double c_re, double c_im, t_data *data);
 int				is_in_julia(double c_re, double c_im, t_data *data);
+int				is_in_burn_ship(double c_re, double c_im, t_data *data);
 int				mlx_start(int argc, char **argv);
 int				key_hooks(int key_code, t_data *data);
 int				scale_center(int key_code, t_data *data);

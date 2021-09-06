@@ -62,11 +62,40 @@ int	is_in_julia(double c_re, double c_im, t_data *data)
 	return (0);
 }
 
+int	is_in_burn_ship(double c_re, double c_im, t_data *data)
+{
+	double	z_re;
+	double	z_im;
+	double	z_re_sq;
+	double	z_im_sq;
+	int		i;
+
+	i = 0;
+	z_re = c_re;
+	z_im = c_im;
+	if (!data)
+		return (-1);
+	while (i < 150)
+	{
+		if ((z_re * z_re + z_im * z_im) > 4)
+			return (i + 1);
+		z_im_sq = z_im * z_im;
+		z_re_sq = z_re * z_re;
+		z_im = (2 * z_re * z_im);
+		if (z_im > 0)
+			z_im *= -1;
+		z_im = z_im + c_im;
+		z_re = z_re_sq - z_im_sq + c_re;
+		i++;
+	}
+	return (0);
+}
+
 void	info_output(void)
 {
 	printf("Type name of fractal after program name to see image.\nAvailable "
 		   "fractals:\n"
-		   "Mandelbrot\nJulia\n"
+		   "Mandelbrot\nJulia\nBurning Ship\n"
 		   "For navigate available arrows. For scale "
 		   "use scroll or shift + arrows (up and down).\n"
 		   "For Julia set "

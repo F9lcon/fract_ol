@@ -1,31 +1,35 @@
-SRCS	= main.c color_utils.c image_utils.c mlx_utils.c key_hooks.c mouse_hooks.c
+SRCS		= main.c color_utils.c image_utils.c mlx_utils.c key_hooks.c mouse_hooks.c
 
-HEADER	= fractol.h
+HEADER		= fractol.h
 
-LIB		= ./libft/libft.a
+LIB			= ./libft/libft.a
 
-MLX		= ./mlx/libmlx.a
+MLX			= ./mlx/libmlx.a
 
-NAME 	= fractol
+NAME 		= fractol
 
-CC		= gcc
+MAKEFILE	= Makefile
 
-CFLAGS	= -Wall -Wextra -Werror -I .
+HEADER		= fractol.h
 
-RM		= rm -f
+CC			= gcc
 
-.PHONY: all clean fclean re fractol lib mlx
+CFLAGS		= -Wall -Wextra -Werror -I .
 
-all: lib mlx $(NAME)
+RM			= rm -f
 
-$(NAME): $(SRCS) $(HEADER) $(LIB) $(MLX)
+.PHONY: all clean fclean re mlx
+
+all: $(MLX) $(NAME)
+
+$(NAME): $(MAKEFILE) $(HEADER) $(SRCS) $(HEADER) $(LIB) $(MLX)
 	$(CC) $(CFLAGS) $(SRCS) $(LIB) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
 
-lib:
+$(LIB):
 	@make -C libft
 
 mlx:
-	@make -C mlx
+	@make -C -s mlx
 
 clean:
 	@make clean -C libft
