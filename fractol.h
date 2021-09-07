@@ -37,6 +37,7 @@ typedef struct s_data
 	double			const_re;
 	double			const_im;
 	void			*set_func;
+	char			*dst;
 }			t_data;
 
 unsigned int	create_trgb(unsigned int t, unsigned int r, unsigned int

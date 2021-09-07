@@ -20,16 +20,20 @@ RM			= rm -f
 
 .PHONY: all clean fclean re mlx
 
-all: $(MLX) $(NAME)
-
 $(NAME): $(MAKEFILE) $(HEADER) $(SRCS) $(HEADER) $(LIB) $(MLX)
-	$(CC) $(CFLAGS) $(SRCS) $(LIB) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "---------------------"
+	@echo "Compilation..."
+	@$(CC) $(CFLAGS) $(SRCS) $(LIB) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "Compilation complete"
+	@echo "---------------------"
+
+all: $(MLX) $(NAME)
 
 $(LIB):
 	@make -C libft
 
-mlx:
-	@make -C -s mlx
+$(MLX):
+	@make -C mlx
 
 clean:
 	@make clean -C libft

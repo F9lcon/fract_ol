@@ -15,13 +15,10 @@
 #define WIDTH 900
 #define HEIGHT 900
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pix / 8));
-	*(unsigned int *) dst = color;
-}
+//void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+//{
+//
+//}
 
 unsigned int	get_color(int dinamic)
 {
@@ -55,7 +52,10 @@ void	draw(int (*is_in_set)(), t_data *data)
 					- 1);
 			dinamic = is_in_set(c_x, c_y, data);
 			data->color = get_color(dinamic);
-			my_mlx_pixel_put(data, x, y, data->color);
+//			my_mlx_pixel_put(data, x, y, data->color);
+			data->dst = data->addr + (y * data->line_length + x *
+					(data->bits_per_pix / 8));
+			*(unsigned int *) data->dst = data->color;
 			x++;
 		}
 		y++;
